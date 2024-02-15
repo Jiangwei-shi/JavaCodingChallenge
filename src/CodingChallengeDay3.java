@@ -143,7 +143,7 @@ public class CodingChallengeDay3 {
                     break;
                 case "2":
                     System.out.println("please enter the task ID:");
-                    taskID = Integer.parseInt(scanner.nextLine())-1;
+                    taskID = Integer.parseInt(scanner.nextLine());
                     System.out.println("please enter the task Title:");
                     taskTitle = scanner.nextLine();
                     System.out.println("please enter the task Text:");
@@ -174,7 +174,7 @@ public class CodingChallengeDay3 {
                     break;
                 case "5":
                     System.out.println("please enter the task ID:");
-                    taskID = Integer.parseInt(scanner.nextLine())-1;
+                    taskID = Integer.parseInt(scanner.nextLine());
                     System.out.println("please enter the task assigned to:");
                     assignedTo = scanner.nextLine();
                     if(dao.updateAssignedTo(taskID,assignedTo)){
@@ -192,7 +192,6 @@ public class CodingChallengeDay3 {
                 default:
                     System.out.println("Only can select 0~5");
                     break;
-                final:
             }
         }
     }
