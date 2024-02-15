@@ -1,15 +1,14 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class CodingChallengeDay1AndDay2 {
-    static ArrayList<String> taskList = new ArrayList<>();
+    static String[] taskLists = new String[5];
     public static String[] getRepeatedTasks(){
         HashSet<String> set = new HashSet<>();
         ArrayList<String> repeatedList = new ArrayList<>();
-        for (String s : taskList) {
+        for (String s : taskLists) {
             if (set.contains(s)) {
                 repeatedList.add(s);
             } else {
@@ -18,6 +17,15 @@ public class CodingChallengeDay1AndDay2 {
         }
         String[] result = new String[repeatedList.size()];
         return repeatedList.toArray(result);
+    }
+    public static Boolean addTask(String string){
+        for (int i = 0; i < taskLists.length; i++) {
+            if(taskLists[i]==null){
+                taskLists[i] = string;
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -41,17 +49,21 @@ public class CodingChallengeDay1AndDay2 {
                 case "1":
                     System.out.println("please enter the task name:");
                     String taskName = scanner.nextLine();
-                    taskList.add(taskName);
-                    System.out.println("Success!");
+                    Boolean addTask = addTask(taskName);
+                    if(addTask){
+                        System.out.println("Success!");
+                    }else {
+                        System.out.println("Sorry the list is full!");
+                    }
                     break;
                 case "2":
-                    for (int i = 0; i < taskList.size(); i++) {
-                        System.out.println((i+1)+". "+taskList.get(i));
+                    for (int i = 0; i < taskLists.length; i++) {
+                        System.out.println((i+1)+". "+taskLists[i]);
                     }
                     break;
                 case "3":
-                    for (int i = taskList.size()-1; i >= 0; i--) {
-                        System.out.println((taskList.size()-i)+". "+taskList.get(i));
+                    for (int i = taskLists.length-1; i >= 0; i--) {
+                        System.out.println((taskLists.length-i)+". "+taskLists[i]);
                     }
                     break;
                 case "4":
@@ -62,19 +74,19 @@ public class CodingChallengeDay1AndDay2 {
                     int updateIndex = Integer.parseInt(scanner.nextLine());
                     System.out.println("please input the new task:");
                     String updateInformation = scanner.nextLine();
-                    taskList.set(updateIndex-1,updateInformation);
+                    taskLists[updateIndex-1] = updateInformation;
                     System.out.println("Success!");
                     break;
                 case "6":
                     System.out.println("please enter the task you want delete(number):");
                     int deleteIndex = Integer.parseInt(scanner.nextLine());
-                    taskList.remove(deleteIndex-1);
+                    taskLists[deleteIndex-1] = null;
                     System.out.println("Success!");
                     break;
                 case "7":
                     System.out.println("please enter the task you want search(number):");
                     int searchIndex = Integer.parseInt(scanner.nextLine());
-                    System.out.println(taskList.get(searchIndex-1));
+                    System.out.println(taskLists[searchIndex-1]);
                     break;
                 case "0":
                     scanner.close();
