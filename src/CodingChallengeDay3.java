@@ -44,10 +44,10 @@ class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "taskId=" + taskId +
-                ", taskTitle='" + taskTitle + '\'' +
-                ", taskText='" + taskText + '\'' +
-                ", assignedTo='" + assignedTo + '\'' +
+                "taskId=" + getTaskId() +
+                ", taskTitle='" + getTaskTitle() + '\'' +
+                ", taskText='" + getTaskText() + '\'' +
+                ", assignedTo='" + getAssignedTo() + '\'' +
                 '}';
     }
 }
