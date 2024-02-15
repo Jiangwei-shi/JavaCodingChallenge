@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class CodingChallengeDay1AndDay2 {
     static String[] taskLists = new String[5];
