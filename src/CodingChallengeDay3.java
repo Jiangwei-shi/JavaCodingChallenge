@@ -190,7 +190,7 @@ public class CodingChallengeDay3 {
                     scanner.close();
                     return;
                 default:
-                    System.out.println("Only can select 0~5");
+                    System.out.println("Only can select 0~6");
                     break;
             }
         }
