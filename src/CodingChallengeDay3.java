@@ -124,7 +124,7 @@ public class CodingChallengeDay3 {
             System.out.println("5. reAssignee the task to another user");
             System.out.println("6. List of tasks");
             System.out.println("0. exit");
-            System.out.println("Select your choice with Number");
+            System.out.println("Select your choice with Number(0~6)");
             String Choice = scanner.nextLine();
             switch(Choice){
                 case "1":
