@@ -1,3 +1,5 @@
+package Day3;
+//this is Dao class. Include addTask,updateTask,deleteTask,searchTask,updateAssignedTo and getTasks methods
 public class Dao {
     private final static Task[] taskLists = new Task[5];
 

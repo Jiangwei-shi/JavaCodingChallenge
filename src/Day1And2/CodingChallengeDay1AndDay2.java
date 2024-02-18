@@ -1,3 +1,5 @@
+package Day1And2;
+
 import java.util.*;
 
 public class CodingChallengeDay1AndDay2 {

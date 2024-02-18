@@ -1,7 +1,9 @@
+package Day3;
+
 import java.util.*;
 
 public class CodingChallengeDay3 {
-
+    //is a menu of CRUD task.the main class just hold menu. All the CRUD operations happen in dao class
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Dao dao = new Dao();
@@ -60,7 +62,7 @@ public class CodingChallengeDay3 {
                     System.out.println("please enter the task ID:");
                     taskID = Integer.parseInt(scanner.nextLine())-1;
                     if(dao.searchTask(taskID)!=null){
-                        System.out.println("Here is Task: "+dao.searchTask(taskID));
+                        System.out.println("Here is Day3.Task: "+dao.searchTask(taskID));
                     }else {
                         System.out.println("Sorry no such task.");
                     }

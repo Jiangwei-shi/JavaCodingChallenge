@@ -1,10 +1,12 @@
+package Day3;
+//this is Task class.
 public class Task {
     private static int lastTaskId = 0;
     private final int taskId;
     private String taskTitle;
     private String taskText;
     private String assignedTo;
-
+//constructor
     public Task(String taskTitle, String taskText, String assignedTo) {
         this.taskId = ++lastTaskId;
         this.taskTitle = taskTitle;
