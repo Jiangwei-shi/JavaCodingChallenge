@@ -1,6 +1,8 @@
 package Day4;
 
 import Day3.Task;
+import Day6.InvalidClientException;
+import Day6.InvalidVisitorException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,7 +10,7 @@ import java.util.Scanner;
 // is a menu of Register and login. CRUD task.the main class just hold menu.
 // All the CRUD operations happen in task dao class, and Register and login happened in user class.
 public class CodingChallengeDay4 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidClientException, InvalidVisitorException, InvalidClientException, InvalidVisitorException {
         Scanner scanner = new Scanner(System.in);
         String username;
         String password;
@@ -19,6 +21,7 @@ public class CodingChallengeDay4 {
         UserDAOImpl userDAO = new UserDAOImpl();
         TaskDAOImpl taskDAO = new TaskDAOImpl();
         boolean isLoginIn = false;
+        User newUser = null;
 
         //this is Register and login part
         while (!isLoginIn) {
@@ -38,20 +41,30 @@ public class CodingChallengeDay4 {
                     System.out.println("2. Visitor");
                     System.out.println("Enter your choice(1 or 2): ");
                     int userType = Integer.parseInt(scanner.nextLine());
-                    User newUser;
+
                     switch (userType) {
                         case 1:
-                            newUser = new Client(username, password);
+                            try {
+                                newUser = new Client(username, password);
+                                userDAO.addUser(newUser);
+                                System.out.println("Registration successful with username: " + username);
+                            }catch (InvalidClientException e){
+                                System.out.println("this should be handle error Client user name start with Client_ ");
+                            }
                             break;
                         case 2:
-                            newUser = new Visitor(username, password);
+                            try {
+                                newUser = new Visitor(username, password);
+                                userDAO.addUser(newUser);
+                                System.out.println("Registration successful with username: " + username);
+                            }catch (InvalidVisitorException e){
+                                System.out.println("this should be handle error Visitor user name start with Visitor_ ");
+                            }
                             break;
                         default:
                             System.out.println("Invalid user type. Registration failed.");
                             return;
                     }
-                    userDAO.addUser(newUser);
-                    System.out.println("Registration successful for " + newUser.getClass().getSimpleName() + " with username: " + username);
                     break;
                 case "2":
                     System.out.println("please enter the username:");
