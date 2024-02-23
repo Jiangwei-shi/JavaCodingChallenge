@@ -1,4 +1,4 @@
-package Day4;
+package Day4AndDay5;
 
 import Day3.Task;
 
@@ -10,6 +10,9 @@ public interface TaskDAO {
     boolean deleteTask(int taskId);
     Task searchTask(int taskId);
     boolean updateAssignedTo(int taskId, String assignedTo);
-    Task[] getTasks();
+    boolean updateCompletionDate(int taskId, String completionDate);
+    boolean updateTaskAsCompleted(int taskId);
+    Task[] getAllTheCompletedTasks();
+    Task[] getTasksByIncreaseCompletionData();
     ArrayList<Task> getTasksToUser(String userName);
 }

@@ -6,12 +6,16 @@ public class Task {
     private String taskTitle;
     private String taskText;
     private String assignedTo;
+    private String completionData;
+    private Boolean isCompleted;
 //constructor
-    public Task(String taskTitle, String taskText, String assignedTo) {
+    public Task(String taskTitle, String taskText, String assignedTo, String completionDate, Boolean isCompleted) {
         this.taskId = ++lastTaskId;
         this.taskTitle = taskTitle;
         this.taskText = taskText;
         this.assignedTo = assignedTo;
+        this.completionData = completionDate;
+        this.isCompleted = isCompleted;
     }
 
     public int getTaskId() {
@@ -29,6 +33,10 @@ public class Task {
     public String getAssignedTo() {
         return assignedTo;
     }
+
+    public String getCompletionData(){ return completionData; }
+
+    public Boolean getIsCompleted() { return isCompleted; }
     public void setTaskTitle(String newTitle) {
         this.taskTitle = newTitle;
     }
@@ -41,6 +49,10 @@ public class Task {
         this.assignedTo = assignedTo;
     }
 
+    public void setCompletionData(String completionData){ this.completionData =  completionData; }
+
+    public void setIsCompleted(Boolean isCompleted) { this.isCompleted = isCompleted; }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -48,6 +60,8 @@ public class Task {
                 ", taskTitle='" + getTaskTitle() + '\'' +
                 ", taskText='" + getTaskText() + '\'' +
                 ", assignedTo='" + getAssignedTo() + '\'' +
+                ", completionData='" + getCompletionData() + '\'' +
+                ", isCompleted='" + getIsCompleted() + '\'' +
                 '}';
     }
 }

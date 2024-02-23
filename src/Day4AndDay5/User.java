@@ -1,4 +1,4 @@
-package Day4;
+package Day4AndDay5;
 //this is parent user class
 public abstract class User {
     private static int lastUserId = 0;

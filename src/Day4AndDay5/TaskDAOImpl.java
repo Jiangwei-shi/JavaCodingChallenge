@@ -1,8 +1,11 @@
-package Day4;
+package Day4AndDay5;
 
 import Day3.Task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 //this is TaskDAO Interface impl class
 public class TaskDAOImpl implements TaskDAO{
@@ -59,7 +62,50 @@ public class TaskDAOImpl implements TaskDAO{
     }
 
     @Override
-    public Task[] getTasks() {
+    public boolean updateCompletionDate(int taskId, String completionDate) {
+        for (Task task : taskLists) {
+            if (task.getTaskId() == taskId) {
+                task.setCompletionData(completionDate);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateTaskAsCompleted(int taskId) {
+        for (Task task : taskLists) {
+            if (task.getTaskId() == taskId) {
+                task.setIsCompleted(true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Task[] getAllTheCompletedTasks() {
+        ArrayList<Task> completedTasks = new ArrayList<>();
+        for (Task task : taskLists){
+            if (task.getIsCompleted()){
+                completedTasks.add(task);
+            }
+        }
+        Task[] result = new Task[completedTasks.size()];
+        completedTasks.toArray(result);
+        return result;
+    }
+
+    @Override
+    public Task[] getTasksByIncreaseCompletionData() {
+        Arrays.sort(taskLists, new Comparator<Task>() {
+            @Override
+            public int compare(Task o1, Task o2) {
+                LocalDate date1 = LocalDate.parse(o1.getCompletionData());
+                LocalDate date2 = LocalDate.parse(o2.getCompletionData());
+                return date1.compareTo(date2);
+            }
+        });
         return taskLists;
     }
 

@@ -1,4 +1,4 @@
-package Day4;
+package Day4AndDay5;
 
 import Day6.InvalidVisitorException;
 

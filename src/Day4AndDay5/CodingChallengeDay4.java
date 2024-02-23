@@ -1,4 +1,4 @@
-package Day4;
+package Day4AndDay5;
 
 import Day3.Task;
 import Day6.InvalidClientException;
@@ -18,6 +18,7 @@ public class CodingChallengeDay4 {
         String taskTitle;
         String taskText;
         String assignedTo;
+        String completionDate;
         UserDAOImpl userDAO = new UserDAOImpl();
         TaskDAOImpl taskDAO = new TaskDAOImpl();
         boolean isLoginIn = false;
@@ -95,7 +96,8 @@ public class CodingChallengeDay4 {
                 System.out.println("3. delete a task");
                 System.out.println("4. search a task");
                 System.out.println("5. reAssignee the task to another user");
-                System.out.println("6. List of tasks");
+                System.out.println("6. reAssignee the completion date of task");
+                System.out.println("7. arrange task by increasing the date");
                 System.out.println("0. exit");
                 System.out.println("Select your choice with Number(0~6)");
                 int Choice = Integer.parseInt(scanner.nextLine());
@@ -107,7 +109,9 @@ public class CodingChallengeDay4 {
                     taskText = scanner.nextLine();
                     System.out.println("please enter the task assignedTo:");
                     assignedTo = scanner.nextLine();
-                    Task task = new Task(taskTitle,taskText,assignedTo);
+                    System.out.println("please enter the task completion Date:");
+                    completionDate = scanner.nextLine();
+                    Task task = new Task(taskTitle,taskText,assignedTo,completionDate,false);
                     if(taskDAO.addTask(task)){
                         System.out.println("success!");
                     }else {
@@ -157,7 +161,18 @@ public class CodingChallengeDay4 {
                     }
                     break;
                 case 6:
-                    System.out.println(Arrays.toString(taskDAO.getTasks()));
+                    System.out.println("please enter the task ID:");
+                    taskID = Integer.parseInt(scanner.nextLine());
+                    System.out.println("please enter the task completion Data:");
+                    completionDate = scanner.nextLine();
+                    if(taskDAO.updateCompletionDate(taskID,completionDate)){
+                        System.out.println("success!");
+                    }else {
+                        System.out.println("Sorry no such task.");
+                    }
+                    break;
+                case 7:
+                    System.out.println(Arrays.toString(taskDAO.getTasksByIncreaseCompletionData()));
                     break;
                 case 0:
                     scanner.close();
@@ -169,6 +184,8 @@ public class CodingChallengeDay4 {
             }else {
                 System.out.println("welcome visitor! Here is menu");
                 System.out.println("1. Check tasks assigned to me");
+                System.out.println("2. mark tasks as completed");
+                System.out.println("3. check all the completed tasks");
                 System.out.println("0. exit");
                 System.out.println("Select your choice with Number(0~1)");
                 int userSelect = Integer.parseInt(scanner.nextLine());
@@ -181,6 +198,19 @@ public class CodingChallengeDay4 {
                         }else {
                             System.out.println(tasksToUser);
                         }
+                        break;
+                    case 2:
+                        System.out.println("please enter the task ID:");
+                        taskID = Integer.parseInt(scanner.nextLine())-1;
+                        if(taskDAO.updateTaskAsCompleted(taskID)){
+                            System.out.println("success!");
+                        }else {
+                            System.out.println("Sorry no such task.");
+                        }
+                        break;
+                    case 3:
+                        Task[] completedTasks = taskDAO.getAllTheCompletedTasks();
+                        System.out.println(Arrays.toString(completedTasks));
                         break;
                     case 0:
                         scanner.close();

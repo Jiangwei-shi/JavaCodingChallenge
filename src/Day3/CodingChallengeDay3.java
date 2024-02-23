@@ -29,7 +29,7 @@ public class CodingChallengeDay3 {
                     taskText = scanner.nextLine();
                     System.out.println("please enter the task assignedTo:");
                     assignedTo = scanner.nextLine();
-                    Task task = new Task(taskTitle,taskText,assignedTo);
+                    Task task = new Task(taskTitle,taskText,assignedTo,"1.1",false);
                     if(dao.addTask(task)){
                         System.out.println("success!");
                     }else {
